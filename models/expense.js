@@ -9,7 +9,7 @@ const expenseSchema = new Schema({
     type: Date,
     required: true
   },
-  category: {
+  categoryId: {
     type: String,
     require: true
   },
