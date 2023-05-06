@@ -1,0 +1,25 @@
+<div class="row mt-5">
+  <div class="col-md-6 m-auto">
+    <div class="card card-body user-card">
+      <h1 class="text-center mt-3">登入頁</h1>
+      <form action="/users/login" method="POST">
+        <div class="mb-3">
+          <label for="name" class="mb-2">帳號</label>
+          <input type="text" id="name" name="name" class="form-control" />
+        </div>
+        <div class="mb-3">
+          <label for="password" class="mb-2">密碼</label>
+          <input type="password" id="password" name="password" class="form-control" />
+        </div>
+        <div class="d-grid gap-2 col-4 mx-auto">
+          <button type="submit" class="btn btn-primary">登入</button>
+        </div>
+        {{> message}}
+      </form>
+      <p class="lead mt-4">
+        還沒帳號嗎？
+        <a href="/users/register" class="btn btn-success ms-3">註冊</a>
+      </p>
+    </div>
+  </div>
+</div>
