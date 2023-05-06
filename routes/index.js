@@ -6,9 +6,9 @@ const category = require("./modules/category")
 const users = require('./modules/users')
 const { authenticator } = require('../middleware/auth')
 
-router.use('/expenses', authenticator, expenses)
 router.use('/users', users)
-router.use("/category", authenticator, category)
-router.use('/', authenticator, home)
+router.use('/expenses', authenticator, expenses)
+router.use("/category", authenticator, category);
+router.use("/", authenticator, home);
 
 module.exports = router
