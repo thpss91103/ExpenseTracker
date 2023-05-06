@@ -5,6 +5,10 @@ if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
 }
 
+const router = require("./routes")
+
+require("./config/mongoose")
+
 const app = express()
 const port = process.env.PORT
 
@@ -13,9 +17,7 @@ app.set('view engine', 'hbs')
 
 app.use(express.static("public"));
 
-app.get('/', (req, res) => {
-  res.render('index')
-})
+app.use(router)
 
 app.listen(port, () => {
   console.log(`Express is listening on http://localhost:${port}`)
