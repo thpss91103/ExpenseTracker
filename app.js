@@ -18,16 +18,7 @@ const flash = require("connect-flash");
 const PORT = process.env.PORT;
 const app = express();
 
-app.engine(
-  "hbs",
-  exphbs.engine({
-    defaultLayout: "main",
-    extname: ".hbs",
-    helpers: {
-      match: (a, b) => a === b,
-    },
-  })
-);
+app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
 app.set("view engine", "hbs");
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
@@ -35,7 +26,7 @@ app.use(methodOverride("_method"));
 
 app.use(
   session({
-    secret: process.env.SESSION,
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
   })
@@ -47,10 +38,7 @@ app.use((req, res, next) => {
   res.locals.isAuthenticated = req.isAuthenticated();
   res.locals.user = req.user;
   res.locals.success_msg = req.flash("success_msg");
-  res.locals.error_msg = req.flash("error_msg").length
-    ? req.flash("error_msg")
-    : req.flash("error");
-
+  res.locals.warning_msg = req.flash("warning_msg")
   next();
 });
 

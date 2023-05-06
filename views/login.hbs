@@ -1,11 +1,12 @@
 <div class="row mt-5">
   <div class="col-md-6 m-auto">
     <div class="card card-body user-card">
-      <h1 class="text-center mt-3">登入頁</h1>
+      <h1 class="text-center mt-3">Login</h1>
+      {{> message}}
       <form action="/users/login" method="POST">
         <div class="mb-3">
-          <label for="name" class="mb-2">帳號</label>
-          <input type="text" id="name" name="name" class="form-control" />
+          <label for="account" class="mb-2">帳號</label>
+          <input type="text" id="account" name="account" class="form-control" value="{{ account }}"/>
         </div>
         <div class="mb-3">
           <label for="password" class="mb-2">密碼</label>
@@ -14,7 +15,6 @@
         <div class="d-grid gap-2 col-4 mx-auto">
           <button type="submit" class="btn btn-primary">登入</button>
         </div>
-        {{> message}}
       </form>
       <p class="lead mt-4">
         還沒帳號嗎？

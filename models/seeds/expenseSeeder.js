@@ -2,11 +2,11 @@ if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
 }
 const db = require("../../config/mongoose");
-const User = require("../User");
+const User = require("../users");
 const Category = require("../category");
 const Expense = require("../expense");
 const bcrypt = require("bcryptjs");
-const user = { name: "dad", password: "000000" };
+const user = { name: "老爸", account: "dad", password: "123" };
 const expense = [
   { name: "房租", date: "2023/03/05", amount: 15000, category: "家居物業" },
   { name: "月票", date: "2023/03/08", amount: 1280, category: "交通出行" },
@@ -19,14 +19,14 @@ db.once("open", () => {
   bcrypt
     .genSalt(10)
     .then((salt) => bcrypt.hash(user.password, salt))
-    .then((hash) => User.create({ name: user.name, password: hash }))
+    .then((hash) => User.create({ name: user.name, account: user.account, password: hash }))
     .then((user) => {
       const userId = user._id;
       return Promise.all(
         Array.from(expense, (expense) => {
           return Category.findOne({ name: expense.category }).then(
             (category) => {
-              const categoryId = category._id;
+              const categoryId = category.icon;
               return Expense.create({
                 ...expense,
                 userId,
